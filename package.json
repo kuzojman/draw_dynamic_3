@@ -1,0 +1,12 @@
+{
+  "name": "draw_dynamic_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server_part.js",
+  "scripts": 
+  {
+    "start": "node server_part.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
