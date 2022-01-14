@@ -9,15 +9,38 @@
     <div class="canvasWrapper">
         <canvas id="canvasId" width="600" height="600"></canvas>
         <div class="customPointer" />
+
     </div>
-    
+    <li style="margin-top:10px;">
+        <button id="drawing-mode" class="btn btn-info">Enter drawing mode</button>
+        <div style="display: none;" id="drawing-mode-options">
+          <label for="drawing-mode-selector">Mode:</label>
+          
+          <select id="drawing-mode-selector">
+            <option>Pencil</option>
+            <option>Circle</option>
+            <option>Spray</option>
+            <option>Pattern</option>
+            <option>hline</option>
+            <option>vline</option>
+            <option>square</option>
+            <option>diamond</option>
+            <option>texture</option>
+          </select><br>
+          <label for="drawing-line-width">Line width:</label>
+          <input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
+          <label for="drawing-color">Line color:</label>
+          <input type="color" value="#005E7A" id="drawing-color"><br>
+
+        </div>
+      </li>
 
     <script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
 
     <script src="https://unpkg.com/fabric@4.6.0/dist/fabric.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
-    
+
     <script src="frontend.js"></script> 
 
 </body>
