@@ -37,3 +37,34 @@ socket.on( 'connect', function()
       console.log('recieved',  canvas.freeDrawingBrush._points.length)
     });
 });
+
+
+var drawingModeEl = document.getElementById('drawing-mode'),
+      drawingOptionsEl = document.getElementById('drawing-mode-options'),
+      drawingColorEl = document.getElementById('drawing-color'),
+      drawingLineWidthEl = document.getElementById('drawing-line-width');
+      
+  drawingModeEl.onclick = function()
+   {
+    canvas.isDrawingMode = !canvas.isDrawingMode;
+    if (canvas.isDrawingMode) 
+    {
+      drawingModeEl.innerHTML = 'Cancel drawing mode';
+      drawingOptionsEl.style.display = '';
+    }
+    else 
+    {
+      drawingModeEl.innerHTML = 'Enter drawing mode';
+      drawingOptionsEl.style.display = 'none';
+    }
+  };
+
+  drawingColorEl.onchange = function() 
+  {
+    canvas.freeDrawingBrush.color = drawingColorEl.value;
+  };
+  drawingLineWidthEl.onchange = function() 
+  {
+    canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
+  };
+
