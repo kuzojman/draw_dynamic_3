@@ -19,9 +19,32 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => 
 {
 
-    socket.on('mouse:move', e => {
+    socket.on('mouse:move', e => 
+    {
         socket.broadcast.emit('mouse:move', e)
     });
+
+    socket.on('color:change', colour => 
+    {
+        socket.broadcast.emit('color:change', colour);
+    });
+
+    socket.on('width:change', width_pass => 
+    {
+        socket.broadcast.emit('width:change', width_pass);
+    });
+
+
+    socket.on('circle:edit', circle_pass => 
+    {
+        socket.broadcast.emit('circle:edit', circle_pass);
+    });
+
+    socket.on('circle:add', circle_pass => 
+    {
+        socket.broadcast.emit('circle:add', circle_pass);
+    });
+
 
     socket.on('disconnect', () => 
     {
