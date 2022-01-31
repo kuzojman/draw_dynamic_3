@@ -6,38 +6,100 @@
 </head>
 
 <body>
+
+
+  <a class="thmb" href="#" onclick="drawcle()" style="padding: 0px 10px;margin:5px;border: 2px solid;">Circle</a>
+  <a class="thmb" href="#" onclick="drawrec()" style="padding: 0px 10px;margin:5px;border: 2px solid;">Rectangle</a>
+  <a class="thmb" href="#" onclick="drawLine()" style="padding: 0px 10px;margin:5px;border: 2px solid;">line</a>
+  <a class="thmb" href="#" onclick="enableFreeDrawing()" style="padding: 0px 10px;margin:5px;border: 2px solid;">Drawing</a>
+  <a class="thmb" href="#" onclick="enableSelection()" style="padding: 0px 10px;margin:5px;border: 2px solid;">Selection</a>
+  <a class="thmb" href="#" onclick="print_Text()" style="padding: 0px 10px;margin:5px;border: 2px solid;">TEXT add!</a>
+
+  <input id="uploader" type="file"/>
+  <label for="drawing-mode-selector-2">Mode:</label>
+  <select id="drawing-mode-selector-2">
+    <option>━━━</option>
+    <option>- - - - -</option>
+  </select><br>
+  
+  <li style="margin-top:10px;">
+    <button id="drawing-mode" class="btn btn-info">Enter drawing mode</button>
+    <div style="display: none;" id="drawing-mode-options">
+      <label for="drawing-mode-selector">Mode:</label>
+      
+      <select id="drawing-mode-selector">
+        <option>Pencil</option>
+        <option>Circle</option>
+        <option>Spray</option>
+        <option>Pattern</option>
+        <option>hline</option>
+        <option>vline</option>
+        <option>square</option>
+        <option>diamond</option>
+        <option>texture</option>
+      </select><br>
+      <!---
+      <label for="drawing-line-width">Line width:</label>
+      <input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
+      <label for="drawing-color">Line color:</label>
+      <input type="color" value="#005E7A" id="drawing-color"><br>
+-->
+
+      
+    </div>
+    
+  </li>
+
+
+
+  <div class='config_input_1 config' >
+    <label for="drawing-figure-width">толщина фигуры:</label>
+    <input type="range" value="30" min="0" max="150" id="drawing-figure-width"><br>
+    <label for="drawing-color-fill">Цвет внутри фигуры:</label>
+    <input type="color" value="#005E7A" id="drawing-color-fill"><br>
+    <label for="drawing-color-border">Цвет границы фигуры:</label>
+    <input type="color" value="#005E7A" id="drawing-color-border"><br>
+    <label for="opacity">прозрачность фигуры:</label>
+    <input type="range" value="100" min="0" max="100" id="opacity"><br>
+  </div>
+
+  <div class='config_input_2 config'>
+    <label for="drawing-figure-width">толщина фигуры:</label>
+    <input type="range" value="30" min="0" max="150" id="drawing-figure-width"><br>
+    <label for="drawing-color-fill">Цвет внутри фигуры:</label>
+    <input type="color" value="#005E7A" id="drawing-color-fill"><br>
+    <label for="opacity">прозрачность фигуры:</label>
+    <input type="range" value="100" min="0" max="100" id="opacity"><br>
+  </div>
+
+  <div class='config_input_3 config'>
+    <label for="drawing-line-width">Line width:</label>
+    <input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
+    <label for="drawing-color">Line color:</label>
+    <input type="color" value="#005E7A" id="drawing-color"><br>
+  </div>
+
+
+
     <div class="canvasWrapper">
+        <!--- <canvas id="canvasId" width="600" height="600"></canvas> --->
         <canvas id="canvasId" width="600" height="600"></canvas>
         <div class="customPointer" />
 
     </div>
-    <li style="margin-top:10px;">
-        <button id="drawing-mode" class="btn btn-info">Enter drawing mode</button>
-        <div style="display: none;" id="drawing-mode-options">
-          <label for="drawing-mode-selector">Mode:</label>
-          
-          <select id="drawing-mode-selector">
-            <option>Pencil</option>
-            <option>Circle</option>
-            <option>Spray</option>
-            <option>Pattern</option>
-            <option>hline</option>
-            <option>vline</option>
-            <option>square</option>
-            <option>diamond</option>
-            <option>texture</option>
-          </select><br>
-          <label for="drawing-line-width">Line width:</label>
-          <input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
-          <label for="drawing-color">Line color:</label>
-          <input type="color" value="#005E7A" id="drawing-color"><br>
 
+    <div class="scale">
+      <p class="scale__subtitle">Масштаб</p>
+      <span class= "scale__value">100%</span>
+      
+      </div>
 
-          
-        </div>
-        
-      </li>
-      <a class="thmb" href="#" onclick="drawcle()" style="padding: 0px 10px;margin:5px;border: 2px solid;">Circle</a>
+<!---
+      canvas.setHeight(window.innerHeight);
+      canvas.setWidth(window.innerWidth);
+      canvas.renderAll();
+
+-->
 
     <script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
 
@@ -47,6 +109,9 @@
 
     <script src="frontend.js"></script> 
 
+
+
+    
 </body>
 
 </html>
