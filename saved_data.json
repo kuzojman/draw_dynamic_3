@@ -303,8 +303,8 @@
 			"version": "4.6.0",
 			"originX": "left",
 			"originY": "top",
-			"left": 901,
-			"top": 124.98,
+			"left": 337.31,
+			"top": 169.95,
 			"width": 53.02,
 			"height": 61.96,
 			"fill": null,
@@ -559,6 +559,44 @@
 					245.1075595119056
 				]
 			]
+		},
+		{
+			"type": "rect",
+			"version": "4.6.0",
+			"originX": "left",
+			"originY": "top",
+			"left": 397.8,
+			"top": 167.86,
+			"width": 82.95,
+			"height": 55.96,
+			"fill": "rgba(0,94,122,1)",
+			"stroke": "#005e7a",
+			"strokeWidth": 1,
+			"strokeDashArray": [
+				0,
+				0
+			],
+			"strokeLineCap": "butt",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "miter",
+			"strokeUniform": false,
+			"strokeMiterLimit": 4,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"rx": 0,
+			"ry": 0
 		}
 	],
 	"background": {

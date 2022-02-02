@@ -354,15 +354,54 @@ let circle ;
     canvas.on('object:moving',e =>
     {
       socket.emit('canvas_save_to_json',canvas.toJSON());
-      socket.emit('object:moving', canvas.toJSON());
-      console.log('object:moving',e)
+      if (e.target._objects)
+      {
+        let data = {objects:[]};
+         e.target._objects.forEach(object =>{
+           let object_index = find_object_index(object);
+           object.object_index = object_index;
+           data.objects.push({object:object, index:object_index});
+         });
+ 
+         socket.emit('object:modified', data);
+      }
+      else
+      {
+       let object_index = find_object_index(e.target);
+ 
+       e.target.object_index = object_index;
+       
+       socket.emit('object:modified', 
+       {
+         object: e.target,
+         index:object_index
+       });
+      }
+      //socket.emit('object:moving', canvas.toJSON());
+      //console.log('object:moving',e)
     });
 
 
     socket.on('object:moving', e =>
     {
-        console.log('object:moving',e);
-        //canvas.loadFromJSON(e);
+        //console.log('object:moving',e);
+        //console.log('object:modified',e)
+        if (e.objects) 
+        {
+          for (const object of e.objects) 
+          {
+            let d = canvas.item(object.index);
+            d.set(object.object);
+          }
+        } 
+        else 
+        {
+          let d = canvas.item(e.index);
+          d.set(e.object);
+        }
+ 
+        canvas.renderAll();        
+        
     });
 
     socket.on('figure_delete', e =>
