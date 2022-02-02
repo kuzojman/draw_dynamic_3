@@ -516,7 +516,7 @@ var drawingModeEl = document.getElementById('drawing-mode'),
     document.querySelectorAll('.config').forEach(item=>{
       item.style.display='none';
     });
-    document.querySelector('.config_input_2').style.display='block';
+    document.querySelector('.config_input_1').style.display='block';
     var rect, isDown, origX, origY;
     removeEvents();
     changeObjectSelection(false);
@@ -589,6 +589,11 @@ var drawingModeEl = document.getElementById('drawing-mode'),
   
   function drawLine() 
   {
+    document.querySelectorAll('.config').forEach(item=>{
+      item.style.display='none';
+    });
+    document.querySelector('.config_input_1').style.display='block';
+
     let line, isDown;
 
     removeEvents();
@@ -599,9 +604,10 @@ var drawingModeEl = document.getElementById('drawing-mode'),
       let points = [pointer.x, pointer.y, pointer.x, pointer.y];
       line = new fabric.Line(points, {
         strokeWidth: drawing_figure_width.value,
-        fill: drawing_color_fill.value,
+        //fill: hexToRgbA(drawing_color_fill.value,drawing_figure_opacity.value),
+        stroke: hexToRgbA(drawing_color_fill.value,drawing_figure_opacity.value),
         strokeDashArray: [stroke_line, stroke_line],
-        stroke: '#07ff11a3',
+        ///stroke: '#07ff11a3',
         originX: 'center',
         originY: 'center',
         selectable: false
@@ -911,6 +917,21 @@ var drawingModeEl = document.getElementById('drawing-mode'),
     socket.emit('canvas_save_to_json',canvas.toJSON());
     socket.emit("text:add",canvas.toJSON());
   };
+
+
+  const pathUsualGrid = './images/grids/usual-grid.svg';
+  const pathTriangularGrid = './images/grids/triangular-grid.svg';
+  
+  canvas.setBackgroundColor(
+      {
+          source: pathUsualGrid,
+          repeat: "repeat",
+          scaleX: 1,
+          scaleY: 1
+      }, canvas.renderAll.bind(canvas)
+  );
+  
+
 /*
   let activeObject = canvas.getActiveObject();
   activeObject.set('fill','rgba(50,50,25,0.51)');
