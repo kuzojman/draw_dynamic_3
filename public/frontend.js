@@ -315,10 +315,38 @@ let circle ;
         }
       });
       */
-      console.log(e,'1e','object:modified');
-      //socket.emit('object:modified', e)
+     if (e.target._objects)
+     {
+       let data = {objects:[]};
+        e.target._objects.forEach(object =>{
+          let object_index = find_object_index(object);
+          object.object_index = object_index;
+          data.objects.push({object:object, index:object_index});
+        });
+
+        socket.emit('object:modified', data);
+     }
+     else
+     {
+      let object_index = find_object_index(e.target);
+
+      e.target.object_index = object_index;
+      
+      socket.emit('object:modified', 
+      {
+        object: e.target,
+        index:object_index
+      });
+     }
+     
+
+     
+     //console.log(e,'1e','object:modified',object_index,e.target._objects);
+     console.log(e,'1e1233123','object:modified',e.target._objects);
+      //console.log(e,'1e','object:modified');
+      
       socket.emit('canvas_save_to_json',canvas.toJSON());
-      socket.emit('object:modified', canvas.toJSON())
+      //socket.emit('object:modified', canvas.toJSON())
     });
 
 
@@ -333,8 +361,8 @@ let circle ;
 
     socket.on('object:moving', e =>
     {
-        console.log('object:moving',e)
-        canvas.loadFromJSON(e);
+        console.log('object:moving',e);
+        //canvas.loadFromJSON(e);
     });
 
     socket.on('figure_delete', e =>
@@ -388,7 +416,29 @@ let circle ;
     socket.on('object:modified', e =>
     {
         console.log('object:modified',e)
-        canvas.loadFromJSON(e);
+        if (e.objects) 
+        {
+          for (const object of e.objects) 
+          {
+            let d = canvas.item(object.index);
+            d.set(object.object);
+            //canvas._objects[object.object_index]=object;
+            
+          }
+        } 
+        else 
+        {
+          let d = canvas.item(e.index);
+          d.set(e.object);
+          /*d.set(
+            {
+              left: e.object.left,
+              top: e.object.top
+            });*/
+          //canvas._objects[e.target.object_index]=e.target;
+        }
+
+        //canvas.loadFromJSON(e);
         /*let d = canvas.item(e.object_index);
         
         //console.log('dddd1212d',d.type);
@@ -399,7 +449,7 @@ let circle ;
               top: e.target.top
             });
             */
-        //canvas.renderAll();        
+        canvas.renderAll();        
 
     });
   /*
@@ -931,6 +981,23 @@ var drawingModeEl = document.getElementById('drawing-mode'),
       }, canvas.renderAll.bind(canvas)
   );
   
+
+
+function find_object_index(target_object)
+{
+  let target_index ;
+  let objects = canvas.getObjects();
+  objects.forEach(function(object,index){
+    
+    if (object==target_object)
+    {
+      target_index = index;
+    }
+  });
+  return target_index;
+}
+   /*     
+      */
 
 /*
   let activeObject = canvas.getActiveObject();
