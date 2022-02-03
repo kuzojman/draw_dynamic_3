@@ -315,6 +315,7 @@ let circle ;
         }
       });
       */
+     /*
      if (e.target._objects)
      {
        let data = {objects:[]};
@@ -344,8 +345,9 @@ let circle ;
      //console.log(e,'1e','object:modified',object_index,e.target._objects);
      console.log(e,'1e1233123','object:modified',e.target._objects);
       //console.log(e,'1e','object:modified');
-      
+      */
       socket.emit('canvas_save_to_json',canvas.toJSON());
+      send_part_of_data(e);
       //socket.emit('object:modified', canvas.toJSON())
     });
 
@@ -354,29 +356,7 @@ let circle ;
     canvas.on('object:moving',e =>
     {
       socket.emit('canvas_save_to_json',canvas.toJSON());
-      if (e.target._objects)
-      {
-        let data = {objects:[]};
-         e.target._objects.forEach(object =>{
-           let object_index = find_object_index(object);
-           object.object_index = object_index;
-           data.objects.push({object:object, index:object_index});
-         });
- 
-         socket.emit('object:modified', data);
-      }
-      else
-      {
-       let object_index = find_object_index(e.target);
- 
-       e.target.object_index = object_index;
-       
-       socket.emit('object:modified', 
-       {
-         object: e.target,
-         index:object_index
-       });
-      }
+      send_part_of_data(e);
       //socket.emit('object:moving', canvas.toJSON());
       //console.log('object:moving',e)
     });
@@ -384,24 +364,7 @@ let circle ;
 
     socket.on('object:moving', e =>
     {
-        //console.log('object:moving',e);
-        //console.log('object:modified',e)
-        if (e.objects) 
-        {
-          for (const object of e.objects) 
-          {
-            let d = canvas.item(object.index);
-            d.set(object.object);
-          }
-        } 
-        else 
-        {
-          let d = canvas.item(e.index);
-          d.set(e.object);
-        }
- 
-        canvas.renderAll();        
-        
+        recive_part_of_data(e);
     });
 
     socket.on('figure_delete', e =>
@@ -419,30 +382,35 @@ let circle ;
 
     canvas.on('object:scaling',e =>
     {
+
       socket.emit('canvas_save_to_json',canvas.toJSON());
-      socket.emit('object:scaling', canvas.toJSON());
-      console.log('object:scaling',e)
+      send_part_of_data(e);
+      //socket.emit('object:scaling', canvas.toJSON());
+      //console.log('object:scaling',e)
     });
 
 
     socket.on('object:scaling', e =>
     {
-        console.log('object:scaling',e)
-        canvas.loadFromJSON(e);
+        //console.log('object:scaling',e)
+        //canvas.loadFromJSON(e);
+        recive_part_of_data(e);
     });
 
     canvas.on('object:rotating',e =>
     {
       socket.emit('canvas_save_to_json',canvas.toJSON());
-      socket.emit('object:rotating', canvas.toJSON());
-      console.log('object:rotating',e)
+      send_part_of_data(e);
+      ///socket.emit('object:rotating', canvas.toJSON());
+     /// console.log('object:rotating',e)
     });
 
 
     socket.on('object:rotating', e =>
     {
-        console.log('object:rotating',e)
-        canvas.loadFromJSON(e);
+        console.log('object:rotating',e);
+        recive_part_of_data(e);
+        //canvas.loadFromJSON(e);
     });
 
     socket.on('text:add', e =>
@@ -454,43 +422,15 @@ let circle ;
 
     socket.on('object:modified', e =>
     {
-        console.log('object:modified',e)
-        if (e.objects) 
-        {
-          for (const object of e.objects) 
-          {
-            let d = canvas.item(object.index);
-            d.set(object.object);
-            //canvas._objects[object.object_index]=object;
-            
-          }
-        } 
-        else 
-        {
-          let d = canvas.item(e.index);
-          d.set(e.object);
-          /*d.set(
-            {
-              left: e.object.left,
-              top: e.object.top
-            });*/
-          //canvas._objects[e.target.object_index]=e.target;
-        }
-
-        //canvas.loadFromJSON(e);
-        /*let d = canvas.item(e.object_index);
+        console.log('object:modified','fuck yeaa!!!',e);
         
-        //console.log('dddd1212d',d.type);
-      // console.log('object:modified',e.target,e.target.type);
-        d.set(
-            {
-              left: e.target.left,
-              top: e.target.top
-            });
-            */
-        canvas.renderAll();        
-
+        recive_part_of_data(e);
     });
+
+
+
+
+    
   /*
     socket.on('circle:edit', function(circle_taken)
     {
@@ -1035,6 +975,117 @@ function find_object_index(target_object)
   });
   return target_index;
 }
+
+function send_part_of_data(e)
+{
+  if (e.target._objects)
+  {
+    let data = {objects:[]};
+    //console.log('length',(e.target._objects).length);
+   // for (let index = 0; index < (e.target._objects).length; index++) 
+  //  {
+  //    let smth = (e.target._objects)[index];
+   //   let smth_index = find_object_index((e.target._objects)[index]);
+   //   console.log(((e.target._objects)[index]).left,index,smth_index,e.target.top,e.target.left)
+  //  }
+
+
+     e.target._objects.forEach(object =>
+      {
+       let object_index = find_object_index(object);
+       object.object_index = object_index;
+       data.objects.push({object:object, index:object_index,top_all:e.target.top,left_all:e.target.left});
+     });
+
+     socket.emit('object:modified', data);
+     console.log('data send',data);
+     //console.log('e send',e);
+  }
+  else
+  {
+   let object_index = find_object_index(e.target);
+
+   e.target.object_index = object_index;
+   
+   socket.emit('object:modified', 
+   {
+     object: e.target,
+     index:object_index
+   });
+  }
+}
+
+function recive_part_of_data(e)
+{
+  //console.log('get something',e);
+  if (e.objects) 
+  {
+    for (const object of e.objects) 
+    {
+      let d = canvas.item(object.index);
+      
+      //console.log('!!!!!!!', object.index,object,object.object.top);
+      
+      d.set(object.object);
+      d.set({
+        top: object.top_all+object.object.top,
+        left: object.left_all+object.object.left
+      }
+      );
+    }
+  } 
+  else 
+  {
+    let d = canvas.item(e.index);
+    d.set(e.object);
+  }
+
+  canvas.renderAll(); 
+  //return d;       
+}
+
+
+/*
+socket.on('object:modified', e =>
+{
+    console.log('object:modified',e)
+    if (e.objects) 
+    {
+      for (const object of e.objects) 
+      {
+        let d = canvas.item(object.index);
+        d.set(object.object);
+        //canvas._objects[object.object_index]=object;
+        
+      }
+    } 
+    else 
+    {
+      let d = canvas.item(e.index);
+      d.set(e.object);
+      /*d.set(
+        {
+          left: e.object.left,
+          top: e.object.top
+        });*/
+      //canvas._objects[e.target.object_index]=e.target;
+   // }
+
+    //canvas.loadFromJSON(e);
+    /*let d = canvas.item(e.object_index);
+    
+    //console.log('dddd1212d',d.type);
+  // console.log('object:modified',e.target,e.target.type);
+    d.set(
+        {
+          left: e.target.left,
+          top: e.target.top
+        });
+        */
+ //   canvas.renderAll();        
+
+//});
+
    /*     
       */
 
