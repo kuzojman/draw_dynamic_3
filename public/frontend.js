@@ -358,7 +358,7 @@ let circle ;
       socket.emit('canvas_save_to_json',canvas.toJSON());
       send_part_of_data(e);
       //socket.emit('object:moving', canvas.toJSON());
-      //console.log('object:moving',e)
+      //console.log('object:moving',canvas.toJSON())
     });
 
 
@@ -989,12 +989,23 @@ function send_part_of_data(e)
    //   console.log(((e.target._objects)[index]).left,index,smth_index,e.target.top,e.target.left)
   //  }
 
+  //console.log('eqweqweqweqeqweqweqweqew',e);
+      let json_canvas = canvas.toJSON();
 
-     e.target._objects.forEach(object =>
+
+
+     e.transform.target._objects.forEach(object =>
       {
+        
        let object_index = find_object_index(object);
        object.object_index = object_index;
-       data.objects.push({object:object, index:object_index,top_all:e.target.top,left_all:e.target.left});
+       data.objects.push({object:object, 
+                            index:object_index,
+                            top_all:json_canvas.objects[object_index].top,
+                            left_all:json_canvas.objects[object_index].left,
+                            angle:json_canvas.objects[object_index].angle,
+                            scaleX:json_canvas.objects[object_index].scaleX,
+                            scaleY:json_canvas.objects[object_index].scaleY});
      });
 
      socket.emit('object:modified', data);
@@ -1017,19 +1028,22 @@ function send_part_of_data(e)
 
 function recive_part_of_data(e)
 {
-  //console.log('get something',e);
+  console.log('get something',e);
   if (e.objects) 
   {
     for (const object of e.objects) 
     {
       let d = canvas.item(object.index);
       
-      //console.log('!!!!!!!', object.index,object,object.object.top);
+      //console.log('!!!!!!!', object.index,object,object.object.top,object.top_all,object.object.top+object.top_all);
       
-      d.set(object.object);
+     // d.set(object.object);
       d.set({
-        top: object.top_all+object.object.top,
-        left: object.left_all+object.object.left
+        top: object.top_all,//+object.object.top,
+        left: object.left_all,//+object.object.left
+        angle: object.angle,
+        scaleX: object.scaleX,
+        scaleY: object.scaleY
       }
       );
     }
