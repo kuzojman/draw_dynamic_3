@@ -8,167 +8,12 @@ canvas.isDrawingMode = false;
 //canvas.freeDrawingBrush.width = 5;
 //canvas.freeDrawingBrush.color = '#00aeff';
 
-const MAX_ZOOM_IN  = 4;
-const MAX_ZOOM_OUT = 0.05;
-const SCALE_STEP = 0.05;
-
-let currentValueZoom = 1;
-
-fabric.Canvas.prototype.toggleDragMode = function () 
-{
-    const STATE_IDLE = "idle";
-    const STATE_PANNING = "panning";
-    // Remember the previous X and Y coordinates for delta calculations
-    let lastClientX;
-    let lastClientY;
-    // Keep track of the state
-    let state = STATE_IDLE;
-    // We're entering dragmode
-    if (canvas.isDrawingMode) {
-        // Discard any active object
-        canvas.discardActiveObject();
-        // Set the cursor to 'move'
-        this.defaultCursor = "move";
-        // Loop over all objects and disable events / selectable. We remember its value in a temp variable stored on each object
-        this.forEachObject(function (object) {
-            object.prevEvented = object.evented;
-            object.prevSelectable = object.selectable;
-            object.evented = false;
-            object.selectable = false;
-        });
-        // Remove selection ability on the canvas
-        this.selection = false;
-        // // When MouseUp fires, we set the state to idle
-        this.on("mouse:up", function (e) {
-            state = STATE_IDLE;
-        });
-        // // When MouseDown fires, we set the state to panning
-        this.on("mouse:down", (e) => {
-            state = STATE_PANNING;
-            lastClientX = e.e.clientX;
-            lastClientY = e.e.clientY;
-        });
-        // When the mouse moves, and we're panning (mouse down), we continue
-        this.on("mouse:move", (e) => {
-            if (state === STATE_PANNING && e && e.e) {
-                // let delta = new fabric.Point(e.e.movementX, e.e.movementY); // No Safari support for movementX and movementY
-                // For cross-browser compatibility, I had to manually keep track of the delta
-  
-                // Calculate deltas
-                let deltaX = 0;
-                let deltaY = 0;
-                if (lastClientX) {
-                    deltaX = e.e.clientX - lastClientX;
-                }
-                if (lastClientY) {
-                    deltaY = e.e.clientY - lastClientY;
-                }
-                // Update the last X and Y values
-                lastClientX = e.e.clientX;
-                lastClientY = e.e.clientY;
-  
-                let delta = new fabric.Point(deltaX, deltaY);
-                this.relativePan(delta);
-                // this.trigger("moved");
-            }
-        });
-    } else {
-        // When we exit dragmode, we restore the previous values on all objects
-        this.forEachObject(function (object) {
-            object.evented =
-                object.prevEvented !== undefined ? object.prevEvented : object.evented;
-            object.selectable =
-                object.prevSelectable !== undefined
-                    ? object.prevSelectable
-                    : object.selectable;
-        });
-        // Reset the cursor
-        this.defaultCursor = "default";
-        // Remove the event listeners
-        this.off("mouse:up");
-        this.off("mouse:down");
-        this.off("mouse:move");
-        // Restore selection ability on the canvas
-        this.selection = true;
-    }
-  };
-
-
-function handleScale (delta)
-{
-    if (delta<0)
-    {
-        if(currentValueZoom<=MAX_ZOOM_OUT)
-        {
-            return;
-        }
-        else
-        {
-            currentValueZoom = (parseFloat(currentValueZoom)-SCALE_STEP).toFixed(2);
-
-        }
-    }
-    else
-    {
-        if(currentValueZoom>=MAX_ZOOM_IN)
-        {
-            return;
-        }
-        else
-        {
-            currentValueZoom = (parseFloat(currentValueZoom)+SCALE_STEP).toFixed(2);
-
-        }
-    }
-}
-
-
-canvas.on('mouse:wheel',function(opt){
-    const delta =opt.e.deltaY;
-    handleScale(delta);
-    as.textContent = (currentValueZoom * 100).toFixed(0)+'%';
-    canvas.zoomToPoint({x:opt.e.offsetX, y: opt.e.offsetY},currentValueZoom);
-    opt.e.preventDefault();
-    opt.e.stopPropagation();
-})
-
-document.body.addEventListener('keydown',e =>
-{
-    if(e.code ==='Space' && !e.repeat)
-    {
-        e.preventDefault();
-        canvas.toggleDragMode();
-        canvas.isDrawingMode = false;
-    }
-});
-
-document.body.addEventListener('keyup',e =>
-{
-    if(e.code ==='Space' && !e.repeat)
-    {
-        e.preventDefault();
-        canvas.toggleDragMode();
-        canvas.isDrawingMode = true;
-    }
-});
-
-
 
 
 
 
 socket.on( 'connect', function()
 {
-  /*
-  canvas.on('object:moving', e =>
-  {
-    console.log(e,'moves','object:moving');
-  })
-*/
-
-
-
-
     socket.on('mouse:move', function(e)
     {
       canvas.freeDrawingBrush._points = e.map(item => 
@@ -306,46 +151,6 @@ let circle ;
 
     canvas.on('object:modified', e =>
     {
- /*     let objects = canvas.getObjects();
-      objects.forEach(function(object,index){
-        console.log(object==e.target,index);
-        if (object==e.target)
-        {
-          e.object_index = index;
-        }
-      });
-      */
-     /*
-     if (e.target._objects)
-     {
-       let data = {objects:[]};
-        e.target._objects.forEach(object =>{
-          let object_index = find_object_index(object);
-          object.object_index = object_index;
-          data.objects.push({object:object, index:object_index});
-        });
-
-        socket.emit('object:modified', data);
-     }
-     else
-     {
-      let object_index = find_object_index(e.target);
-
-      e.target.object_index = object_index;
-      
-      socket.emit('object:modified', 
-      {
-        object: e.target,
-        index:object_index
-      });
-     }
-     
-
-     
-     //console.log(e,'1e','object:modified',object_index,e.target._objects);
-     console.log(e,'1e1233123','object:modified',e.target._objects);
-      //console.log(e,'1e','object:modified');
-      */
       socket.emit('canvas_save_to_json',canvas.toJSON());
       send_part_of_data(e);
       //socket.emit('object:modified', canvas.toJSON())
@@ -357,8 +162,6 @@ let circle ;
     {
       socket.emit('canvas_save_to_json',canvas.toJSON());
       send_part_of_data(e);
-      //socket.emit('object:moving', canvas.toJSON());
-      //console.log('object:moving',canvas.toJSON())
     });
 
 
@@ -385,15 +188,11 @@ let circle ;
 
       socket.emit('canvas_save_to_json',canvas.toJSON());
       send_part_of_data(e);
-      //socket.emit('object:scaling', canvas.toJSON());
-      //console.log('object:scaling',e)
     });
 
 
     socket.on('object:scaling', e =>
     {
-        //console.log('object:scaling',e)
-        //canvas.loadFromJSON(e);
         recive_part_of_data(e);
     });
 
@@ -401,8 +200,6 @@ let circle ;
     {
       socket.emit('canvas_save_to_json',canvas.toJSON());
       send_part_of_data(e);
-      ///socket.emit('object:rotating', canvas.toJSON());
-     /// console.log('object:rotating',e)
     });
 
 
@@ -427,22 +224,6 @@ let circle ;
         recive_part_of_data(e);
     });
 
-
-
-
-    
-  /*
-    socket.on('circle:edit', function(circle_taken)
-    {
-      circle.set({
-        radius: circle_taken.radius
-      });
-      canvas.renderAll();
-
-        console.log('circle:edit',circle_taken)
-        //'canvas.freeDrawingBrush.width = width_taken'
-    });
-*/
 
 });
 
@@ -476,13 +257,6 @@ var drawingModeEl = document.getElementById('drawing-mode'),
 
 
   //document.getElementById('drawing-mode-selector-2').addEventListener('change', function() 
-
-
-
-
-
-
-
 
 
   function drawcle() 
@@ -690,9 +464,6 @@ var drawingModeEl = document.getElementById('drawing-mode'),
       canvas.freeDrawingBrush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
       socket.emit("width:change", canvas.freeDrawingBrush.width);
     };
-    //alert(drawingColorEl.value);
-
-    console.log('click me!!!')
     let isDrawing = false
 
     canvas.on('mouse:down', e => 
@@ -703,9 +474,7 @@ var drawingModeEl = document.getElementById('drawing-mode'),
     canvas.on('mouse:up', e => 
     {
       isDrawing = false;
-      console.log(e,'123456789');
       socket.emit('canvas_save_to_json',canvas.toJSON());
-      //socket.emit('object:modified', canvas.toJSON())
 
     })
     canvas.on('mouse:move', function (e)
@@ -727,16 +496,6 @@ var drawingModeEl = document.getElementById('drawing-mode'),
     canvas.on('mouse:down', e =>
     {
       let d = canvas.getActiveObject();
-      //console.log('!!!!!!',d);
-      //console.log('!!3412412412424124!',document.getElementById("myCanvas"),'123123123');
-/*
-      d.set
-      (
-        {
-          top:200
-        }
-      );
-*/
     });
 
   }
@@ -831,105 +590,7 @@ var drawingModeEl = document.getElementById('drawing-mode'),
   }
 
 
-  
 
-  function Copy() 
-  {
-    canvas.getActiveObject().clone(function(cloned) {
-      _clipboard = cloned;
-    });
-  }
-
-
-
-  function Delete() 
-  {
-    var doomedObj = canvas.getActiveObject();
-    if (doomedObj.type === 'activeSelection') 
-    {
-        doomedObj.canvas = canvas;
-        doomedObj.forEachObject(function(obj) 
-        {
-          canvas.remove(obj);
-          socket.emit('canvas_save_to_json',canvas.toJSON());
-          socket.emit("figure_delete",canvas.toJSON());
-        });
-    }
-    else
-    {
-
-    var activeObject = canvas.getActiveObject();
-
-      if(activeObject !== null ) 
-      {
-        canvas.remove(activeObject);
-        socket.emit('canvas_save_to_json',canvas.toJSON());
-        socket.emit("figure_delete",canvas.toJSON());
-      }
-    }
-  }
-  
-  function Paste() 
-  {
-    // clone again, so you can do multiple copies.
-    _clipboard.clone(function(clonedObj) {
-      canvas.discardActiveObject();
-      clonedObj.set({
-        left: clonedObj.left + 10,
-        top: clonedObj.top + 10,
-        evented: true,
-      });
-      if (clonedObj.type === 'activeSelection') 
-      {
-        // active selection needs a reference to the canvas.
-        clonedObj.canvas = canvas;
-        clonedObj.forEachObject(function(obj) 
-        {
-          canvas.add(obj);
-          socket.emit('canvas_save_to_json',canvas.toJSON());
-          socket.emit("figure_copied",canvas.toJSON());
-        });
-        // this should solve the unselectability
-        clonedObj.setCoords();
-      } else {
-        canvas.add(clonedObj);
-        socket.emit('canvas_save_to_json',canvas.toJSON());
-        socket.emit("figure_copied",canvas.toJSON());
-      }
-      _clipboard.top += 10;
-      _clipboard.left += 10;
-      canvas.setActiveObject(clonedObj);
-      canvas.requestRenderAll();
-    });
-  }
-
-  
-
-  document.body.addEventListener("keydown",function(e)
-  {
-    e = e || window.event;
-    var key = e.which || e.keyCode; // keyCode detection
-    var ctrl = e.ctrlKey ? e.ctrlKey : ((key === 17) ? true : false); // ctrl detection
-    
-    if ( key == 86 && ctrl ) 
-    {
-      //alert("Ctrl + V Pressed !");
-      Paste();
-      
-    }
-    else if ( key == 67 && ctrl )
-    {
-      //alert("Ctrl + C Pressed !");
-      Copy();
-    }
-    else if ( key == 46 )
-    {
-      //alert("delete Pressed !");
-      Delete();
-    }
-    
-  },
-  false);
 
 
   function print_Text()
@@ -981,15 +642,6 @@ function send_part_of_data(e)
   if (e.target._objects)
   {
     let data = {objects:[]};
-    //console.log('length',(e.target._objects).length);
-   // for (let index = 0; index < (e.target._objects).length; index++) 
-  //  {
-  //    let smth = (e.target._objects)[index];
-   //   let smth_index = find_object_index((e.target._objects)[index]);
-   //   console.log(((e.target._objects)[index]).left,index,smth_index,e.target.top,e.target.left)
-  //  }
-
-  //console.log('eqweqweqweqeqweqweqweqew',e);
       let json_canvas = canvas.toJSON();
 
 
