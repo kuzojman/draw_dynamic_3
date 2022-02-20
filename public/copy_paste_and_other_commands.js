@@ -1,13 +1,24 @@
-  
+  let mouse_coords;
 
   function Copy() 
   {
     canvas.getActiveObject().clone(function(cloned) {
       _clipboard = cloned;
     });
+    canvas.on('mouse:move', function (e) {
+      getMouse(e);
+  });
+
   }
 
-
+  function getMouse(e) 
+  {
+    mouse_coords =  {
+      x: e.e.clientX, 
+      y: e.e.clientY
+    } 
+    //console.log(e.e.clientX,e.e.clientY);
+  }
 
   function Delete() 
   {
@@ -41,11 +52,16 @@
     // clone again, so you can do multiple copies.
     _clipboard.clone(function(clonedObj) {
       canvas.discardActiveObject();
+
+
       clonedObj.set({
-        left: clonedObj.left + 10,
-        top: clonedObj.top + 10,
+        left: mouse_coords.x,//clonedObj.left + 10,
+        top:  mouse_coords.y,//clonedObj.top + 10,
         evented: true,
       });
+      //canvas.off('mouse:move');
+    
+
       if (clonedObj.type === 'activeSelection') 
       {
         // active selection needs a reference to the canvas.
@@ -70,7 +86,46 @@
     });
   }
 
-  
+/*
+var state = [];
+var mods = 0;
+
+canvas.on(
+  'object:modified', function () 
+  {
+  updateModifications(true);
+},
+  'object:added', function () {
+  updateModifications(true);
+});
+
+function updateModifications(savehistory) 
+{
+  if (savehistory === true) 
+  {
+      let myjson = JSON.stringify(canvas);
+      state.push(myjson);
+  }
+}
+
+  function undo() 
+  {
+    if (mods < state.length) 
+    {
+        //canvas.clear().renderAll();
+        let index = state.length - 1 - mods - 1;
+        if(index<0)
+        {
+          index = 0;
+        }
+        canvas.loadFromJSON(state[index]);
+        //canvas.renderAll();
+        console.log(state,state.length - 1 - mods - 1)
+        mods += 1;
+
+    }
+  }
+*/
 
   document.body.addEventListener("keydown",function(e)
   {
@@ -97,3 +152,20 @@
     
   },
   false);
+
+  document.addEventListener('keyup', ({ keyCode, ctrlKey } = event) => {
+    // Check Ctrl key is pressed.
+    if (!ctrlKey) {
+      return
+    }
+
+    // Check pressed button is Z - Ctrl+Z.
+    if (keyCode === 90) {
+      canvas.undo()
+    }
+
+    // Check pressed button is Y - Ctrl+Y.
+    if (keyCode === 89) {
+      canvas.redo()
+    }
+  })

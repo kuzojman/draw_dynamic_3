@@ -15,6 +15,9 @@
   <a class="thmb" href="#" onclick="enableSelection()" style="padding: 0px 10px;margin:5px;border: 2px solid;">Selection</a>
   <a class="thmb" href="#" onclick="print_Text()" style="padding: 0px 10px;margin:5px;border: 2px solid;">TEXT add!</a>
 
+  <a class="thmb" href="#" onclick="undo()" style="padding: 0px 10px;margin:5px;border: 2px solid;">undo</a>
+  <a class="thmb" href="#" onclick="redo()" style="padding: 0px 10px;margin:5px;border: 2px solid;">redo</a>
+
   <input id="uploader" type="file"/>
   <label for="drawing-mode-selector-2">Mode:</label>
   <select id="drawing-mode-selector-2">
@@ -110,6 +113,7 @@
     <script src="frontend.js"></script> 
     <script src="pin_and_rotate.js"></script> 
     <script src="copy_paste_and_other_commands.js"></script> 
+    <script src ="fabric_plugin_undo_redo.js"></script>
 
     
 </body>
