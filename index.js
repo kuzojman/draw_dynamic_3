@@ -1,6 +1,9 @@
+import { canvas } from "./src/some_functions.js"
 //import { canvas } from "./some_functions.js"
-const canvas = new fabric.Canvas(document.getElementById('canvasId'));
+//const canvas = new fabric.Canvas(document.getElementById('canvasId'));
 const as = document.querySelector('.scale__value');
+const socket_events = require('./src/socket_events.js');
+const canvas_events = require('./src/canvas_events.js');
 
 
 const socket = io('http://localhost:3000',{transports: ['websocket']});
@@ -10,16 +13,7 @@ canvas.isDrawingMode = false;
 //canvas.freeDrawingBrush.color = '#00aeff';
 
 
-function handle_mouse_move(e)
-{
-  canvas.freeDrawingBrush._points = e.map(item => 
-    {
-    return new fabric.Point(item.x, item.y)
-  })
-  canvas._onMouseUpInDrawingMode({target: canvas.upperCanvasEl}) 
 
-  console.log('recieved',  canvas.freeDrawingBrush._points.length)
-}
 
 function change_colour_of_brush(colour_taken)
 {
@@ -120,7 +114,7 @@ socket.on( 'connect', function()
   let rect ;
   let line ;
 
-    socket.on('mouse:move', handle_mouse_move);      
+    socket.on('mouse:move', socket_events.handle_mouse_move);      
     socket.on('color:change', change_colour_of_brush);
     socket.on('width:change', width_of_line_passed_taken);
     socket.on('circle:edit', circle_passed_to_board);   
@@ -299,16 +293,7 @@ var drawingModeEl = document.getElementById('drawing-mode'),
       socket.emit("circle:add",circle);
     });
   
-    canvas.on('mouse:move', function(o)
-     {
-      if (!isDown) return;
-      var pointer = canvas.getPointer(o.e);
-      circle.set({
-        radius: Math.abs(origX - pointer.x)
-      });
-      socket.emit("circle:edit",circle);
-      canvas.renderAll();
-    });
+    canvas.on('mouse:move', canvas_events.edit_circle_by_mouse(socket));
   
     canvas.on('mouse:up', function(o)
     {

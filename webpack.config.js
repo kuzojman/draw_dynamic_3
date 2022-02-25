@@ -1,6 +1,5 @@
 const path = require('path');
 
-
 module.exports = 
 {
     entry: './index.js',
@@ -9,6 +8,8 @@ module.exports =
         path: path.resolve(__dirname, 'public'),
         filename: 'script_with_bundle_experiment.js',
     },
+    mode: "development"
 };
+
 
   

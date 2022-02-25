@@ -3,14 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "server_part.js",
-  "scripts": 
-  {
-    "start": "node server_part.js"
+  "scripts": {
+    "start": "node server_part.js",
+    "build": "webpack",
+    "dev": "webpack serve --open"
   },
+  "mode": "production",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.2",
     "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }
