@@ -843,8 +843,8 @@
 			"version": "4.6.0",
 			"originX": "left",
 			"originY": "top",
-			"left": 1056.47,
-			"top": 228.86,
+			"left": 790.59,
+			"top": 214.87,
 			"width": 43.98,
 			"height": 42.96,
 			"fill": null,
@@ -944,8 +944,8 @@
 			"version": "4.6.0",
 			"originX": "left",
 			"originY": "top",
-			"left": 1037.48,
-			"top": 223.86,
+			"left": 771.6,
+			"top": 209.87,
 			"width": 62.97,
 			"height": 66.94,
 			"fill": null,
@@ -1024,8 +1024,8 @@
 			"version": "4.6.0",
 			"originX": "left",
 			"originY": "top",
-			"left": 1031.97,
-			"top": 227.34,
+			"left": 766.09,
+			"top": 213.35,
 			"width": 55.99,
 			"height": 44.98,
 			"fill": null,
@@ -1153,8 +1153,8 @@
 			"version": "4.6.0",
 			"originX": "left",
 			"originY": "top",
-			"left": 1040.97,
-			"top": 220.35,
+			"left": 775.09,
+			"top": 206.36,
 			"width": 43,
 			"height": 59.96,
 			"fill": null,
@@ -1254,8 +1254,8 @@
 			"version": "4.6.0",
 			"originX": "left",
 			"originY": "top",
-			"left": 1114.93,
-			"top": 162.41,
+			"left": 849.05,
+			"top": 148.42,
 			"width": 97.97,
 			"height": 71.95,
 			"fill": null,
@@ -1453,8 +1453,8 @@
 			"version": "4.6.0",
 			"originX": "left",
 			"originY": "top",
-			"left": 1091.95,
-			"top": 250.32,
+			"left": 707.13,
+			"top": 316.26,
 			"width": 146.93,
 			"height": 104.92,
 			"fill": null,
@@ -5022,6 +5022,844 @@
 					305.0311432439631
 				]
 			]
+		},
+		{
+			"type": "path",
+			"version": "4.6.0",
+			"originX": "left",
+			"originY": "top",
+			"left": 252.29,
+			"top": 415.83,
+			"width": 0.01,
+			"height": 0,
+			"fill": null,
+			"stroke": "#ff0000",
+			"strokeWidth": 7,
+			"strokeDashArray": null,
+			"strokeLineCap": "round",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "round",
+			"strokeUniform": false,
+			"strokeMiterLimit": 10,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"path": [
+				[
+					"M",
+					255.7860476960388,
+					419.3333282470703
+				],
+				[
+					"L",
+					255.8000476960388,
+					419.3333282470703
+				]
+			]
+		},
+		{
+			"type": "path",
+			"version": "4.6.0",
+			"originX": "left",
+			"originY": "top",
+			"left": 169.35,
+			"top": 315.83,
+			"width": 39.98,
+			"height": 32.01,
+			"fill": null,
+			"stroke": "#ff0000",
+			"strokeWidth": 7,
+			"strokeDashArray": null,
+			"strokeLineCap": "round",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "round",
+			"strokeUniform": false,
+			"strokeMiterLimit": 10,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"path": [
+				[
+					"M",
+					172.85314551333872,
+					319.3263282470703
+				],
+				[
+					"Q",
+					172.86014551333872,
+					319.3333282470703,
+					174.3589329021827,
+					319.3333282470703
+				],
+				[
+					"Q",
+					175.85772029102668,
+					319.3333282470703,
+					177.856103476152,
+					320.8333282470703
+				],
+				[
+					"Q",
+					179.8544866612773,
+					322.3333282470703,
+					181.35327405012126,
+					322.8333282470703
+				],
+				[
+					"Q",
+					182.85206143896522,
+					323.3333282470703,
+					186.84882780921583,
+					325.3333282470703
+				],
+				[
+					"Q",
+					190.84559417946645,
+					327.3333282470703,
+					193.8431689571544,
+					330.8333282470703
+				],
+				[
+					"Q",
+					196.84074373484236,
+					334.3333282470703,
+					198.83912691996767,
+					336.3333282470703
+				],
+				[
+					"Q",
+					200.83751010509297,
+					338.3333282470703,
+					202.33629749393694,
+					339.8333282470703
+				],
+				[
+					"Q",
+					203.8350848827809,
+					341.3333282470703,
+					204.33468067906222,
+					342.3333282470703
+				],
+				[
+					"Q",
+					204.83427647534356,
+					343.3333282470703,
+					205.8334680679062,
+					344.3333282470703
+				],
+				[
+					"Q",
+					206.83265966046886,
+					345.3333282470703,
+					207.3322554567502,
+					345.8333282470703
+				],
+				[
+					"Q",
+					207.83185125303152,
+					346.3333282470703,
+					209.3306386418755,
+					346.8333282470703
+				],
+				[
+					"Q",
+					210.82942603071947,
+					347.3333282470703,
+					210.82942603071947,
+					348.3333282470703
+				],
+				[
+					"Q",
+					210.82942603071947,
+					349.3333282470703,
+					211.32902182700082,
+					349.8333282470703
+				],
+				[
+					"Q",
+					211.82861762328216,
+					350.3333282470703,
+					212.32821341956347,
+					350.8333282470703
+				],
+				[
+					"L",
+					212.83480921584479,
+					351.3403282470703
+				]
+			]
+		},
+		{
+			"type": "path",
+			"version": "4.6.0",
+			"originX": "left",
+			"originY": "top",
+			"left": 175.36,
+			"top": 307.83,
+			"width": 25.98,
+			"height": 46.78,
+			"fill": null,
+			"stroke": "#ff0000",
+			"strokeWidth": 7,
+			"strokeDashArray": null,
+			"strokeLineCap": "round",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "round",
+			"strokeUniform": false,
+			"strokeMiterLimit": 10,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"path": [
+				[
+					"M",
+					204.83427647534356,
+					311.3263282470703
+				],
+				[
+					"Q",
+					204.83427647534356,
+					311.3333282470703,
+					204.83427647534356,
+					312.3333282470703
+				],
+				[
+					"Q",
+					204.83427647534356,
+					313.3333282470703,
+					204.83427647534356,
+					313.8333282470703
+				],
+				[
+					"Q",
+					204.83427647534356,
+					314.3333282470703,
+					204.33468067906222,
+					316.3333282470703
+				],
+				[
+					"Q",
+					203.8350848827809,
+					318.3333282470703,
+					201.8367016976556,
+					320.3333282470703
+				],
+				[
+					"Q",
+					199.83831851253032,
+					322.3333282470703,
+					198.33953112368636,
+					324.8333282470703
+				],
+				[
+					"Q",
+					196.84074373484236,
+					327.3333282470703,
+					194.84236054971706,
+					328.8333282470703
+				],
+				[
+					"Q",
+					192.84397736459172,
+					330.3333282470703,
+					190.84559417946645,
+					333.8333282470703
+				],
+				[
+					"Q",
+					188.84721099434114,
+					337.3333282470703,
+					187.8480194017785,
+					339.8333282470703
+				],
+				[
+					"Q",
+					186.84882780921583,
+					342.3333282470703,
+					184.85044462409053,
+					344.8333282470703
+				],
+				[
+					"Q",
+					182.85206143896522,
+					347.3333282470703,
+					180.85367825383992,
+					350.8333282470703
+				],
+				[
+					"Q",
+					178.8552950687146,
+					354.3333282470703,
+					178.8552950687146,
+					356.3333282470703
+				],
+				[
+					"Q",
+					178.8552950687146,
+					358.3333282470703,
+					178.8552950687146,
+					357.8333282470703
+				],
+				[
+					"L",
+					178.8552950687146,
+					357.3263282470703
+				]
+			]
+		},
+		{
+			"type": "path",
+			"version": "4.6.0",
+			"originX": "left",
+			"originY": "top",
+			"left": 225.31,
+			"top": 285.83,
+			"width": 0.01,
+			"height": 1,
+			"fill": null,
+			"stroke": "#ff0000",
+			"strokeWidth": 7,
+			"strokeDashArray": null,
+			"strokeLineCap": "round",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "round",
+			"strokeUniform": false,
+			"strokeMiterLimit": 10,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"path": [
+				[
+					"M",
+					228.8078746968472,
+					290.3333282470703
+				],
+				[
+					"Q",
+					228.8148746968472,
+					290.3333282470703,
+					228.8148746968472,
+					289.8333282470703
+				],
+				[
+					"L",
+					228.8218746968472,
+					289.3333282470703
+				]
+			]
+		},
+		{
+			"type": "path",
+			"version": "4.6.0",
+			"originX": "left",
+			"originY": "top",
+			"left": 533.24,
+			"top": 185.71,
+			"width": 49,
+			"height": 45.75,
+			"fill": null,
+			"stroke": "#ff0000",
+			"strokeWidth": 44,
+			"strokeDashArray": null,
+			"strokeLineCap": "round",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "round",
+			"strokeUniform": false,
+			"strokeMiterLimit": 10,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"path": [
+				[
+					"M",
+					358.6657817299919,
+					349.28932824707033
+				],
+				[
+					"Q",
+					358.7097817299919,
+					349.3333282470703,
+					358.7097817299919,
+					348.3333282470703
+				],
+				[
+					"Q",
+					358.7097817299919,
+					347.3333282470703,
+					359.7089733225546,
+					348.3333282470703
+				],
+				[
+					"Q",
+					360.7081649151172,
+					349.3333282470703,
+					362.7065481002425,
+					350.3333282470703
+				],
+				[
+					"Q",
+					364.7049312853678,
+					351.3333282470703,
+					366.2037186742118,
+					352.3333282470703
+				],
+				[
+					"Q",
+					367.7025060630558,
+					353.3333282470703,
+					369.70088924818106,
+					355.8333282470703
+				],
+				[
+					"Q",
+					371.69927243330636,
+					358.3333282470703,
+					374.19725141471304,
+					360.8333282470703
+				],
+				[
+					"Q",
+					376.69523039611965,
+					363.3333282470703,
+					378.19401778496365,
+					364.8333282470703
+				],
+				[
+					"Q",
+					379.6928051738076,
+					366.3333282470703,
+					381.1915925626516,
+					367.8333282470703
+				],
+				[
+					"Q",
+					382.6903799514956,
+					369.3333282470703,
+					383.68957154405825,
+					371.3333282470703
+				],
+				[
+					"Q",
+					384.6887631366209,
+					373.3333282470703,
+					386.18755052546487,
+					373.8333282470703
+				],
+				[
+					"Q",
+					387.6863379143088,
+					374.3333282470703,
+					388.1859337105901,
+					374.8333282470703
+				],
+				[
+					"Q",
+					388.68552950687143,
+					375.3333282470703,
+					390.68391269199674,
+					376.8333282470703
+				],
+				[
+					"Q",
+					392.68229587712204,
+					378.3333282470703,
+					395.67987065481,
+					380.8333282470703
+				],
+				[
+					"Q",
+					398.67744543249796,
+					383.3333282470703,
+					399.6766370250606,
+					385.3333282470703
+				],
+				[
+					"Q",
+					400.67582861762327,
+					387.3333282470703,
+					401.67502021018595,
+					388.3333282470703
+				],
+				[
+					"Q",
+					402.67421180274863,
+					389.3333282470703,
+					403.17380759902994,
+					389.8333282470703
+				],
+				[
+					"Q",
+					403.6734033953112,
+					390.3333282470703,
+					404.17299919159257,
+					390.8333282470703
+				],
+				[
+					"Q",
+					404.6725949878739,
+					391.3333282470703,
+					405.6717865804365,
+					391.3333282470703
+				],
+				[
+					"Q",
+					406.6709781729991,
+					391.3333282470703,
+					407.17057396928044,
+					392.3333282470703
+				],
+				[
+					"L",
+					407.6701697655618,
+					393.3333282470703
+				]
+			]
+		},
+		{
+			"type": "path",
+			"version": "4.6.0",
+			"originX": "left",
+			"originY": "top",
+			"left": 539.23,
+			"top": 173.42,
+			"width": 38.06,
+			"height": 64.09,
+			"fill": null,
+			"stroke": "#ff0000",
+			"strokeWidth": 44,
+			"strokeDashArray": null,
+			"strokeLineCap": "round",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "round",
+			"strokeUniform": false,
+			"strokeMiterLimit": 10,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"path": [
+				[
+					"M",
+					402.7182118027486,
+					335.28932824707033
+				],
+				[
+					"Q",
+					402.67421180274863,
+					335.3333282470703,
+					401.17542441390464,
+					337.3333282470703
+				],
+				[
+					"Q",
+					399.67663702506064,
+					339.3333282470703,
+					397.17865804365397,
+					343.3333282470703
+				],
+				[
+					"Q",
+					394.68067906224735,
+					347.3333282470703,
+					389.6847210994341,
+					355.3333282470703
+				],
+				[
+					"Q",
+					384.6887631366209,
+					363.3333282470703,
+					380.69199676637027,
+					371.3333282470703
+				],
+				[
+					"Q",
+					376.69523039611965,
+					379.3333282470703,
+					373.69765561843167,
+					384.8333282470703
+				],
+				[
+					"Q",
+					370.70008084074374,
+					390.3333282470703,
+					369.2012934518998,
+					392.3333282470703
+				],
+				[
+					"Q",
+					367.7025060630558,
+					394.3333282470703,
+					366.2037186742118,
+					396.8333282470703
+				],
+				[
+					"L",
+					364.66093128536784,
+					399.3773282470703
+				]
+			]
+		},
+		{
+			"type": "path",
+			"version": "4.6.0",
+			"originX": "left",
+			"originY": "top",
+			"left": 610.17,
+			"top": 47.42,
+			"width": 51.05,
+			"height": 21.09,
+			"fill": null,
+			"stroke": "#ff0000",
+			"strokeWidth": 44,
+			"strokeDashArray": null,
+			"strokeLineCap": "round",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "round",
+			"strokeUniform": false,
+			"strokeMiterLimit": 10,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"path": [
+				[
+					"M",
+					435.6035343573161,
+					209.2893282470703
+				],
+				[
+					"Q",
+					435.6475343573161,
+					209.3333282470703,
+					439.14470493128533,
+					211.8333282470703
+				],
+				[
+					"Q",
+					442.64187550525463,
+					214.3333282470703,
+					446.63864187550524,
+					216.3333282470703
+				],
+				[
+					"Q",
+					450.63540824575585,
+					218.3333282470703,
+					454.63217461600647,
+					219.8333282470703
+				],
+				[
+					"Q",
+					458.6289409862571,
+					221.3333282470703,
+					465.1236863379143,
+					223.3333282470703
+				],
+				[
+					"Q",
+					471.61843168957154,
+					225.3333282470703,
+					479.11236863379145,
+					227.8333282470703
+				],
+				[
+					"L",
+					486.65030557801134,
+					230.37732824707032
+				]
+			]
+		},
+		{
+			"type": "circle",
+			"version": "4.6.0",
+			"originX": "center",
+			"originY": "center",
+			"left": 327.6,
+			"top": 499.73,
+			"width": 467.62,
+			"height": 467.62,
+			"fill": "rgba(0,0,0,0.18)",
+			"stroke": "#005e7a",
+			"strokeWidth": 10,
+			"strokeDashArray": [
+				0,
+				0
+			],
+			"strokeLineCap": "butt",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "miter",
+			"strokeUniform": false,
+			"strokeMiterLimit": 4,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"radius": 233.81083265966038,
+			"startAngle": 0,
+			"endAngle": 6.283185307179586
+		},
+		{
+			"type": "circle",
+			"version": "4.6.0",
+			"originX": "center",
+			"originY": "center",
+			"left": 1117.23,
+			"top": 227.67,
+			"width": 467.62,
+			"height": 467.62,
+			"fill": "rgba(0,0,0,0.18)",
+			"stroke": "#005e7a",
+			"strokeWidth": 10,
+			"strokeDashArray": [
+				0,
+				0
+			],
+			"strokeLineCap": "butt",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "miter",
+			"strokeUniform": false,
+			"strokeMiterLimit": 4,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"radius": 233.81083265966038,
+			"startAngle": 0,
+			"endAngle": 6.283185307179586
+		},
+		{
+			"type": "circle",
+			"version": "4.6.0",
+			"originX": "center",
+			"originY": "center",
+			"left": 1413.6,
+			"top": 163.22,
+			"width": 38.08,
+			"height": 38.08,
+			"fill": "rgba(0,94,122,1)",
+			"stroke": "#005e7a",
+			"strokeWidth": 30,
+			"strokeDashArray": [
+				0,
+				0
+			],
+			"strokeLineCap": "butt",
+			"strokeDashOffset": 0,
+			"strokeLineJoin": "miter",
+			"strokeUniform": false,
+			"strokeMiterLimit": 4,
+			"scaleX": 1,
+			"scaleY": 1,
+			"angle": 0,
+			"flipX": false,
+			"flipY": false,
+			"opacity": 1,
+			"shadow": null,
+			"visible": true,
+			"backgroundColor": "",
+			"fillRule": "nonzero",
+			"paintFirst": "fill",
+			"globalCompositeOperation": "source-over",
+			"skewX": 0,
+			"skewY": 0,
+			"radius": 19.03868908088316,
+			"startAngle": 0,
+			"endAngle": 6.283185307179586
 		}
 	],
 	"background": {

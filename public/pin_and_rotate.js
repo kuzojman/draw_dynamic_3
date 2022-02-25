@@ -1,3 +1,5 @@
+//import { canvas } from "./some_functions.js"
+
 const MAX_ZOOM_IN  = 4;
 const MAX_ZOOM_OUT = 0.05;
 const SCALE_STEP = 0.05;

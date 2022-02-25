@@ -1,3 +1,4 @@
+//import { canvas } from "./some_functions.js"
 const canvas = new fabric.Canvas(document.getElementById('canvasId'));
 const as = document.querySelector('.scale__value');
 
@@ -9,59 +10,24 @@ canvas.isDrawingMode = false;
 //canvas.freeDrawingBrush.color = '#00aeff';
 
 
-
-
-
-socket.on( 'connect', function()
+function handle_mouse_move(e)
 {
-    socket.on('mouse:move', function(e)
+  canvas.freeDrawingBrush._points = e.map(item => 
     {
-      canvas.freeDrawingBrush._points = e.map(item => 
-        {
-        return new fabric.Point(item.x, item.y)
-      })
-      canvas._onMouseUpInDrawingMode({target: canvas.upperCanvasEl}) 
+    return new fabric.Point(item.x, item.y)
+  })
+  canvas._onMouseUpInDrawingMode({target: canvas.upperCanvasEl}) 
 
-      console.log('recieved',  canvas.freeDrawingBrush._points.length)
-    });
-    socket.on('color:change', function(colour_taken)
-    {
-        console.log('recieved colour',colour_taken)
-        canvas.freeDrawingBrush.color = colour_taken
-    });
+  console.log('recieved',  canvas.freeDrawingBrush._points.length)
+}
 
-    socket.on('width:change', function(width_taken)
-    {
-        console.log('width:change',width_taken)
-        canvas.freeDrawingBrush.width = width_taken
-    });
+function change_colour_of_brush(colour_taken)
+{
+  console.log('recieved colour',colour_taken);
+  canvas.freeDrawingBrush.color = colour_taken;
+}
 
-let circle ;
-    socket.on('circle:edit', function(circle_taken)
-    {
-      circle.set({
-        radius: circle_taken.radius
-      });
-      canvas.renderAll();
-
-        console.log('circle:edit',circle_taken)
-        //'canvas.freeDrawingBrush.width = width_taken'
-    });
-    
-    socket.on('circle:add', function(circle_taken)
-    {
-        console.log('circle:add',circle_taken)
-        circle = new fabric.Circle(circle_taken)
-        canvas.add(circle)
-          
-        //'canvas.freeDrawingBrush.width = width_taken'
-    });
-
-
-
-    let rect ;
-
-    socket.on('rect:edit', function(rect_taken)
+function handle_editing_rectangle(rect_taken)
     {
 
       rect.set({
@@ -78,33 +44,18 @@ let circle ;
       });
       canvas.renderAll();
       console.log('rect:edit',rect_taken)
-    });
-    socket.on('rect:add', function(rect_taken)
+    }
+
+    function editing_passing_rectangle (rect_taken)
     {
 
         rect = new fabric.Rect(rect_taken)
         canvas.add(rect)
-          
         //'canvas.freeDrawingBrush.width = width_taken'
-    });
+    }
 
-    let line ;
 
-    socket.on('line:edit', function(line_taken)
-    {
-      line.set({
-        x1: line_taken.x1,
-        y1: line_taken.y1,
-        x2: line_taken.x2,
-        y2: line_taken.y2
-      });
-      canvas.renderAll();
-      console.log('line:edit',line_taken.x2, line_taken.y2,line_taken,line)
-
-      //console.log('line:edit',line_taken.x2)
-        //'canvas.freeDrawingBrush.width = width_taken'
-    });
-    socket.on('line:add', function(line_taken)
+    function adding_line_to_partner_board( line_taken)
     {
         console.log('line:add',line_taken)
 
@@ -119,8 +70,65 @@ let circle ;
         //line = new fabric.Line(line_taken)
         canvas.add(line)
         //'canvas.freeDrawingBrush.width = width_taken'
-    });
+    }
 
+    function editing_added_line_to_board(line_taken)
+    {
+      line.set({
+        x1: line_taken.x1,
+        y1: line_taken.y1,
+        x2: line_taken.x2,
+        y2: line_taken.y2
+      });
+      canvas.renderAll();
+      console.log('line:edit',line_taken.x2, line_taken.y2,line_taken,line)
+
+      //console.log('line:edit',line_taken.x2)
+        //'canvas.freeDrawingBrush.width = width_taken'
+    }
+
+    function width_of_line_passed_taken (width_taken)
+    {
+        console.log('width:change',width_taken)
+        canvas.freeDrawingBrush.width = width_taken
+    }
+
+    function circle_passed_to_board(circle_taken)
+    {
+      circle.set({
+        radius: circle_taken.radius
+      });
+      canvas.renderAll();
+
+        console.log('circle:edit',circle_taken)
+        //'canvas.freeDrawingBrush.width = width_taken'
+    }
+
+    function adding_circle_on_the_board(circle_taken)
+    {
+        console.log('circle:add',circle_taken)
+        circle = new fabric.Circle(circle_taken)
+        canvas.add(circle)
+          
+        //'canvas.freeDrawingBrush.width = width_taken'
+    }
+
+socket.on( 'connect', function()
+{
+
+  let circle ;
+  let rect ;
+  let line ;
+
+    socket.on('mouse:move', handle_mouse_move);      
+    socket.on('color:change', change_colour_of_brush);
+    socket.on('width:change', width_of_line_passed_taken);
+    socket.on('circle:edit', circle_passed_to_board);   
+    socket.on('circle:add', adding_circle_on_the_board);
+    socket.on('rect:edit', handle_editing_rectangle);   
+    socket.on('rect:add', editing_passing_rectangle);
+    socket.on('line:edit', editing_added_line_to_board);
+    socket.on('line:add', adding_line_to_partner_board);
 
     socket.on('picture:add', function(img_taken)
     {
@@ -224,8 +232,8 @@ let circle ;
         recive_part_of_data(e);
     });
 
-
 });
+
 
 let stroke_line=0;
 
@@ -311,8 +319,6 @@ var drawingModeEl = document.getElementById('drawing-mode'),
     });
   
   }
-
-
 
   function drawrec() 
   {

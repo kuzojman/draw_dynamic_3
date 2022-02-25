@@ -1,3 +1,5 @@
+
+
   let mouse_coords;
 
   function Copy() 
