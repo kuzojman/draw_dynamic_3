@@ -3,24 +3,12 @@
 //canvas = windows.canvas;
 
 
-const as = document.querySelector('.scale__value');
-
-
-const socket = io();
-
 canvas.isDrawingMode = false;
 //canvas.freeDrawingBrush.width = 5;
 //canvas.freeDrawingBrush.color = '#00aeff';
 
-
-
-
 socket.on( 'connect', function()
 {
-  let circle ;
-  let rect ;
-  let line ;
-
     socket.on('mouse:move', handle_mouse_move);      
     socket.on('color:change', change_colour_of_brush);
     socket.on('width:change', width_of_line_passed_taken);
@@ -52,24 +40,10 @@ socket.on( 'connect', function()
         canvas.loadFromJSON(data);
       }
     })
-
-
-
 });
 
 
-let stroke_line=0;
 
-var drawing_color_fill = document.getElementById('drawing-color-fill'),
-    drawing_color_border = document.getElementById('drawing-color-border'),
-    drawing_figure_width = document.getElementById('drawing-figure-width'),
-    drawing_figure_opacity = document.getElementById('opacity');
-
-
-var drawingModeEl = document.getElementById('drawing-mode'),
-      drawingOptionsEl = document.getElementById('drawing-mode-options'),
-      drawingColorEl = document.getElementById('drawing-color'),
-      drawingLineWidthEl = document.getElementById('drawing-line-width');
       
   drawingModeEl.onclick = function()
    {
@@ -340,20 +314,6 @@ var drawingModeEl = document.getElementById('drawing-mode'),
   }
 
 
-  function hexToRgbA(hex,figures_opacity)
-  {
-    var c;
-    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-        c= hex.substring(1).split('');
-        if(c.length== 3){
-            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-        }
-        c= '0x'+c.join('');
-        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+ figures_opacity/100 + ')';
-    }
-    throw new Error('Bad Hex');
-  }
-
 
 
   window.addEventListener('resize', resizeCanvas, false);
@@ -442,94 +402,6 @@ var drawingModeEl = document.getElementById('drawing-mode'),
   );
   
    
-  function find_object_index(target_object)
-  {
-    let target_index ;
-    let objects = canvas.getObjects();
-    objects.forEach(function(object,index){
-      
-      if (object==target_object)
-      {
-        target_index = index;
-      }
-    });
-    return target_index;
-  }
-  
-  function send_part_of_data(e)
-  {
-    if (e.target._objects)
-    {
-      let data = {objects:[]};
-        let json_canvas = canvas.toJSON();
-  
-  
-  
-       e.transform.target._objects.forEach(object =>
-        {
-          
-         let object_index = find_object_index(object);
-         object.object_index = object_index;
-         data.objects.push({object:object, 
-                              index:object_index,
-                              top_all:json_canvas.objects[object_index].top,
-                              left_all:json_canvas.objects[object_index].left,
-                              angle:json_canvas.objects[object_index].angle,
-                              scaleX:json_canvas.objects[object_index].scaleX,
-                              scaleY:json_canvas.objects[object_index].scaleY});
-       });
-  
-       socket.emit('object:modified', data);
-       console.log('data send',data);
-       //console.log('e send',e);
-    }
-    else
-    {
-     let object_index = find_object_index(e.target);
-  
-     e.target.object_index = object_index;
-     
-     socket.emit('object:modified', 
-     {
-       object: e.target,
-       index:object_index
-     });
-    }
-  }
-  
-  function recive_part_of_data(e)
-  {
-    console.log('get something',e);
-    if (e.objects) 
-    {
-      for (const object of e.objects) 
-      {
-        let d = canvas.item(object.index);
-        
-        //console.log('!!!!!!!', object.index,object,object.object.top,object.top_all,object.object.top+object.top_all);
-        
-       // d.set(object.object);
-        d.set({
-          top: object.top_all,//+object.object.top,
-          left: object.left_all,//+object.object.left
-          angle: object.angle,
-          scaleX: object.scaleX,
-          scaleY: object.scaleY
-        }
-        );
-      }
-    } 
-    else 
-    {
-      let d = canvas.item(e.index);
-      d.set(e.object);
-    }
-  
-    canvas.renderAll(); 
-    //return d;       
-  }
-  
-
 /*
 socket.on('object:modified', e =>
 {
